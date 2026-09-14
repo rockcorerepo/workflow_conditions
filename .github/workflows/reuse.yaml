@@ -8,12 +8,12 @@ on:
             type: string     
         outputs:
           results:
-            value: jobs.outputs.outcome
+            value: ${{ jobs.deploy.outputs.outcome }}
                
 jobs:
   deploy:
     outputs:
-      outcome:  steps.outid.outputs.myname
+      outcome: ${{ steps.outid.outputs.myname }}
     runs-on: ubuntu-latest
     steps:
       - name: get artifacts 
@@ -26,5 +26,5 @@ jobs:
         run: echo "displaying output"
       - name: print output  
         id: outid
-        run: echo "myname:rockybhai" >> "$GITHUB_OUTPUT"
+        run: echo "myname=rockybhai" >> "$GITHUB_OUTPUT"
       
