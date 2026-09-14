@@ -1,8 +1,20 @@
 name: reuse 
-on: workflow_call 
+on:
+    workflow_call: 
+        inputs:
+          artifact-name:
+            description: required file 
+            default: dist 
+            type: string        
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: get artifacts 
+        uses: actions/download-artifacts@v4
+        with:
+          name: ${{ inputs.artifact-name }}
+      - name: list files 
+        run: ls
       - name: display output 
         run: echo "displaying output"
