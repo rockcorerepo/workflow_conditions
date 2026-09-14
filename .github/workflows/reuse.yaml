@@ -5,9 +5,15 @@ on:
           artifact-name:
             description: required file 
             default: dist 
-            type: string        
+            type: string     
+        outputs:
+          results:
+            value: jobs.outputs.outcome
+               
 jobs:
   deploy:
+    outputs:
+      outcome:  steps.outid.outputs.myname
     runs-on: ubuntu-latest
     steps:
       - name: get artifacts 
@@ -18,3 +24,7 @@ jobs:
         run: ls
       - name: display output 
         run: echo "displaying output"
+      - name: print output  
+        id: outid
+        run: echo "myname:rockybhai" >> "$GITHUB_OUTPUT"
+      

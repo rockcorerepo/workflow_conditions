@@ -71,6 +71,12 @@ jobs:
     uses: ./.github/workflows/reuse.yaml
     with:
       artifact-name: dist-files
+  print_out:
+    needs: deploy
+    runs-on: ubuntu-latest 
+    steps:
+      - name: printing 
+        run: echo "${{ needs.deploy.outputs.results }}"
   report: 
     runs-on: ubuntu-latest 
     needs: [lint,deploy]
