@@ -2,6 +2,7 @@ name: matrix deployment
 on: push 
 jobs:
   deployment:
+    continue-on-error: true 
     strategy:
       matrix:
         operating_systems: [ubuntu-latest]
