@@ -1,0 +1,23 @@
+name: matrix deployment 
+on: push 
+jobs:
+  deployment:
+    strategy:
+      matrix:
+        operating_systems: [ubuntu-latest]
+        node-versions: [12,14,16]
+    runs-on: ${{ matrix.operating_systems }}
+    steps:
+      - name: get code  
+        uses: actions/checkout@v3
+      - name: install node js 
+        uses: actions/setup-node@v3
+        with: 
+          node-version: ${{ matrix.node-versions }}
+      - name: install dependencies 
+        run: npm ci
+      - name: build 
+        run: npm run build
+
+
+        
