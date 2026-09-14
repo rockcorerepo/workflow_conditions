@@ -1,5 +1,5 @@
 name: matrix deployment 
-on: push 
+on: workflow_dispatch
 jobs:
   deployment:
     continue-on-error: true 
